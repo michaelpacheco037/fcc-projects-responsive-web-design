@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Share how you learn, what you build, and what keeps you coding in the Developer Pulse survey.">
+    <title>
+      Developer Pulse | Survey
+    </title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 32 32&#x27;%3E%3Crect width=&#x27;32&#x27; height=&#x27;32&#x27; rx=&#x27;8&#x27; fill=&#x27;%2310192e&#x27;/%3E%3Cpath d=&#x27;M7 17h5l3-8 4 15 3-7h3&#x27; fill=&#x27;none&#x27; stroke=&#x27;%23c6f36b&#x27; stroke-width=&#x27;3&#x27;/%3E%3C/svg%3E">
+    <style>
+    /* Page layout */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #eef1f7;
+      color: #18233b;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .survey-shell {
+      display: flex;
+      width: 90%;
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(16, 25, 46, 0.12);
+    }
+
+    /* Introduction panel */
+    .intro {
+      flex: 1;
+      min-width: 0;
+      padding: 45px 35px;
+      background-color: #10192e;
+      color: white;
+    }
+
+    .brand {
+      color: #c6f36b;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .brand-mark {
+      margin-right: 8px;
+    }
+
+    .eyebrow {
+      margin-top: 50px;
+      color: #c6f36b;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: 46px;
+      line-height: 1.15;
+    }
+
+    h1 span {
+      color: #c6f36b;
+    }
+
+    #description {
+      color: #c3cbdd;
+      font-size: 18px;
+    }
+
+    .intro-details {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #3b455b;
+      color: #c3cbdd;
+      font-size: 14px;
+    }
+
+    .intro-details span {
+      display: block;
+    }
+
+    /* Form headings and spacing */
+    .form-panel {
+      flex: 1.2;
+      min-width: 0;
+      padding: 35px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .panel-heading {
+      margin-bottom: 25px;
+    }
+
+    .panel-heading p,
+    .field-hint {
+      margin: 5px 0 10px;
+      color: #5b6475;
+      font-size: 14px;
+    }
+
+    .form-section {
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #d9deea;
+    }
+
+    h3 {
+      margin: 0 0 18px;
+      font-size: 18px;
+    }
+
+    h3 span {
+      margin-right: 8px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      background-color: #edf1f8;
+      color: #536181;
+      font-size: 14px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .optional {
+      color: #5b6475;
+      font-weight: normal;
+    }
+
+    /* Text boxes, dropdown, and comment box */
+    .field input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #bdc6d7;
+      border-radius: 8px;
+      background-color: #fbfcff;
+      color: #18233b;
+      font-family: inherit;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus,
+    #submission-status:focus {
+      outline: 2px solid #5178d9;
+      outline-offset: 3px;
+    }
+
+    .field-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .field-row .field {
+      flex: 1;
+      min-width: 0;
+      margin-bottom: 0;
+    }
+
+    /* Radio buttons and checkboxes */
+    fieldset {
+      min-width: 0;
+      margin: 0 0 22px;
+      padding: 0;
+      border: none;
+    }
+
+    legend {
+      margin-bottom: 8px;
+      padding: 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .choice input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      flex-shrink: 0;
+      accent-color: #537426;
+    }
+
+    .radio-grid .choice {
+      margin-bottom: 8px;
+      padding: 10px 12px;
+      border: 1px solid #d9deea;
+      border-radius: 8px;
+    }
+
+    .last-section {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    /* Submit button and confirmation */
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #c6f36b;
+      color: #10192e;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #b5e45b;
+    }
+
+    .demo-note {
+      color: #5b6475;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    #submission-status {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid #a8d64e;
+      border-radius: 8px;
+      background-color: #f1fadf;
+    }
+
+    /* Stack the panels on smaller screens */
+    @media (max-width: 800px) {
+      .survey-shell {
+        display: block;
+        max-width: 600px;
+        margin: 20px auto;
+      }
+
+      .intro,
+      .form-panel {
+        padding: 30px;
+      }
+
+      .eyebrow {
+        margin-top: 25px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .intro,
+      .form-panel {
+        padding: 24px;
+      }
+
+      .field-row {
+        display: block;
+      }
+
+      .field-row .field {
+        margin-bottom: 18px;
+      }
+    }
+  </style>
+</head>
+  <body>
+    <main class="survey-shell">
+      <header class="intro">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            &lt;/&gt;
+          </span>
+          DEVELOPER PULSE
+        </div>
+        <p class="eyebrow">
+          THE LEARNING &amp; BUILDING SURVEY
+        </p>
+        <h1 id="title">
+          Every developer
+          <br>
+          has a
+          <span>
+            starting point.
+          </span>
+        </h1>
+        <p id="description">
+          Tell us how you learn, what you love to build, and where you want to go next.
+        </p>
+        <div class="intro-details">
+          <span>
+            About 2 minutes
+          </span>
+          <span>
+            All skill levels welcome
+          </span>
+        </div>
+      </header>
+      <div class="form-panel">
+        <div class="panel-heading">
+          <h2>
+            Your coding journey
+          </h2>
+          <p>
+            Fields marked
+            <span aria-hidden="true">
+              *
+            </span>
+            are required.
+          </p>
+        </div>
+        <form id="survey-form">
+          <section class="form-section" aria-labelledby="about-heading">
+            <h3 id="about-heading">
+              <span>
+                01
+              </span>
+              A little about you
+            </h3>
+            <div class="field">
+              <label id="name-label" for="name">
+                Name
+                <span aria-hidden="true">
+                  *
+                </span>
+              </label>
+              <input id="name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label id="email-label" for="email">
+                Email
+                <span aria-hidden="true">
+                  *
+                </span>
+              </label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label id="number-label" for="number">
+                  Years coding
+                  <span class="optional">
+                    (optional)
+                  </span>
+                </label>
+                <input id="number" name="years-coding" type="number" min="0" max="60" step="1" placeholder="0–60 years" inputmode="numeric">
+              </div>
+              <div class="field">
+                <label for="dropdown">
+                  Current role
+                </label>
+                <select id="dropdown" name="role">
+                  <option value="" selected disabled>
+                    Select your role
+                  </option>
+                  <option value="student">
+                    Student
+                  </option>
+                  <option value="self-taught">
+                    Self-taught learner
+                  </option>
+                  <option value="developer">
+                    Working developer
+                  </option>
+                  <option value="career-changer">
+                    Career changer
+                  </option>
+                  <option value="other">
+                    Other
+                  </option>
+                </select>
+              </div>
+            </div>
+          </section>
+          <section class="form-section" aria-labelledby="habits-heading">
+            <h3 id="habits-heading">
+              <span>
+                02
+              </span>
+              How you build
+            </h3>
+            <fieldset>
+              <legend>
+                How often do you code?
+              </legend>
+              <div class="radio-grid">
+                <label class="choice">
+                  <input type="radio" name="frequency" value="daily">
+                  <span>
+                    Every day
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="frequency" value="weekly">
+                  <span>
+                    A few times a week
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="frequency" value="occasionally">
+                  <span>
+                    When I can
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>
+                What would you like to explore?
+              </legend>
+              <p class="field-hint">
+                Choose as many as you like.
+              </p>
+              <div class="checkbox-grid">
+                <label class="choice">
+                  <input type="checkbox" name="interests" value="front-end">
+                  <span>
+                    Front-end development
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interests" value="back-end">
+                  <span>
+                    Back-end development
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interests" value="design">
+                  <span>
+                    UI / UX design
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interests" value="data">
+                  <span>
+                    Data &amp; analytics
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interests" value="mobile">
+                  <span>
+                    Mobile apps
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interests" value="games">
+                  <span>
+                    Game development
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+          </section>
+          <section class="form-section last-section" aria-labelledby="next-heading">
+            <h3 id="next-heading">
+              <span>
+                03
+              </span>
+              Your next chapter
+            </h3>
+            <div class="field">
+              <label for="comments">
+                What do you want to build next?
+              </label>
+              <textarea id="comments" name="comments" rows="4" placeholder="A project idea, a goal, or anything else on your mind…">
+              </textarea>
+            </div>
+          </section>
+          <button id="submit" type="submit">
+            Submit survey
+          </button>
+          <p class="demo-note">
+            Demo form: your responses stay on this page and aren’t stored or sent.
+          </p>
+          <p id="submission-status" role="status" tabindex="-1" hidden>
+          </p>
+        </form>
+      </div>
+    </main>
+    <script>
+    const form = document.getElementById("survey-form");
+    const nameInput = document.getElementById("name");
+    const message = document.getElementById("submission-status");
+
+    // The browser validates the fields before this submit event runs.
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      message.textContent = "Thanks, " + nameInput.value.trim() + "! Your demo submission is complete. Nothing was stored or sent.";
+      message.hidden = false;
+      message.focus();
+    });
+  </script>
+</body>
+</html>
